@@ -2,6 +2,7 @@ import { Request } from 'express'
 import { body } from 'express-validator'
 import {
   INCORRECT_EMAIL,
+  INCORRECT_EMAIL_OR_PASSWORD,
   INCORRECT_FIRST_NAME_MAX_LENGTH,
   INCORRECT_FIRST_NAME_MIN_LENGTH,
   INCORRECT_LAST_NAME_MAX_LENGTH,
@@ -68,4 +69,21 @@ export const registrationValidation = [
       (value: string, { req }: { req: any }) => value === req.body.password
     )
     .withMessage(INCORRECT_PASSWORD_CONFIRMATION),
+]
+
+export const loginValidation = [
+  body('password')
+    .exists()
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
+    .isString()
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
+    .isLength({ min: 6, max: 80 })
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD),
+  body('email')
+    .exists()
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
+    .isString()
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
+    .isEmail()
+    .withMessage(INCORRECT_EMAIL_OR_PASSWORD),
 ]

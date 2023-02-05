@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
+import { Types } from 'mongoose'
 import RefreshToken from '../models/RefreshToken'
 
 dotenv.config({ path: '.env.local' })
@@ -13,7 +14,8 @@ if (!refreshTokenSecret || !accessTokenSecret) {
   throw new Error('Немає ключів для jwt токенів')
 }
 
-export const genAccessJwt = (id: string): string => {
+export const genAccessJwt = (id: string | Types.ObjectId): string => {
+  id = String(id)
   const token = jwt.sign(
     {
       id: id,
@@ -26,7 +28,10 @@ export const genAccessJwt = (id: string): string => {
   return token
 }
 
-export const genRefreshJwt = async (id: string): Promise<string> => {
+export const genRefreshJwt = async (
+  id: string | Types.ObjectId
+): Promise<string> => {
+  id = String(id)
   const token = jwt.sign(
     {
       id: id,

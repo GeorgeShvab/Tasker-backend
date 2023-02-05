@@ -1,5 +1,6 @@
 import { genSalt, hash } from 'bcrypt'
 import { Request, Response } from 'express'
+import { SERVER_ERROR } from '../../errorMessages'
 import User from '../../models/User'
 import { IUser } from '../../types'
 import { genAccessJwt, genRefreshJwt } from '../../utils/genJwt'
@@ -47,7 +48,7 @@ const registration = async (req: Request<any, any, ReqBody>, res: Response) => {
     return res.status(201).json({ accessToken, refreshToken, user })
   } catch (e) {
     console.log(e)
-    return res.status(500).json({ errors: [{ msg: 'Помилка серверу' }] })
+    return res.status(500).json({ errors: [{ msg: SERVER_ERROR }] })
   }
 }
 

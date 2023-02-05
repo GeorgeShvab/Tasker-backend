@@ -1,6 +1,7 @@
 import { Router } from 'express'
+import login from './controllers/user/login'
 import registration from './controllers/user/registration'
-import { registrationValidation } from './validations'
+import { loginValidation, registrationValidation } from './validations'
 import validator from './validator'
 
 const routes = require('./routes.json')
@@ -13,5 +14,7 @@ router.post(
   validator,
   registration
 )
+
+router.post('/api/login', loginValidation, validator, login)
 
 export default router
