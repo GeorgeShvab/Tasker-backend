@@ -1,4 +1,4 @@
-import { TokenExpiredError, verify } from 'jsonwebtoken'
+import { TokenExpiredError, verify, JwtPayload } from 'jsonwebtoken'
 
 const accessTokenSecret: string | undefined =
   process.env.JWT_ACCESS_TOKEN_SECRET
@@ -11,9 +11,9 @@ if (!accessTokenSecret || !refreshTokenSecret) {
 
 export const verifyAccessJwt = (
   token: string
-): false | 'TOKEN_EXPIRED' | {} => {
+): false | 'TOKEN_EXPIRED' | JwtPayload | string => {
   try {
-    const tokenData = verify(token, accessTokenSecret)
+    const tokenData: JwtPayload | string = verify(token, accessTokenSecret)
 
     return tokenData
   } catch (e) {
@@ -27,7 +27,7 @@ export const verifyAccessJwt = (
 
 export const verifyRefreshJwt = (
   token: string
-): false | 'TOKEN_EXPIRED' | {} => {
+): false | 'TOKEN_EXPIRED' | JwtPayload | string => {
   try {
     const tokenData = verify(token, refreshTokenSecret)
 
@@ -36,8 +36,6 @@ export const verifyRefreshJwt = (
     if (e instanceof TokenExpiredError) {
       return 'TOKEN_EXPIRED'
     }
-
-    console.log(e)
 
     return false
   }

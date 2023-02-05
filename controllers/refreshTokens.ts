@@ -17,7 +17,7 @@ const refreshTokens = async (req: Request, res: Response) => {
       return res.status(400).json({ errors: [{ msg: REFRESH_TOKEN_ERROR }] })
     }
 
-    const tokenData: any = verifyRefreshJwt(userRefreshToken)
+    const tokenData = verifyRefreshJwt(userRefreshToken)
 
     if (!tokenData) {
       return res.status(400).json({ errors: [{ msg: REFRESH_TOKEN_ERROR }] })

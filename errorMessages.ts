@@ -10,4 +10,5 @@ export const SERVER_ERROR = 'Помилка серверу',
   INCORRECT_PASSWORD_CONFIRMATION = 'Паролі не співпадають',
   INCORRECT_EMAIL_OR_PASSWORD = 'Невірний емейл або пароль',
   REFRESH_TOKEN_ERROR = 'Невірний рефреш токен',
-  REFRESH_TOKEN_EXPIRED_ERROR = 'Час дії рефреш токену вийшов'
+  REFRESH_TOKEN_EXPIRED_ERROR = 'Час дії рефреш токену вийшов',
+  AUTHORIZATION_ERROR = 'Для виконання цієї дії потрібна авторизація'

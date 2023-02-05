@@ -25,10 +25,10 @@ declare global {
       tokenExpired?: boolean
     }
   }
+}
 
-  namespace jsonwebtoken {
-    export interface JwtPayload {
-      _id: string
-    }
+declare module 'jsonwebtoken' {
+  export interface JwtPayload {
+    _id: string
   }
 }

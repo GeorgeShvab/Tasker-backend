@@ -22,7 +22,7 @@ export const genAccessJwt = (id: string | Types.ObjectId): string => {
     },
     accessTokenSecret,
     {
-      expiresIn: 20,
+      expiresIn: '10m',
     }
   )
   return token
@@ -38,7 +38,7 @@ export const genRefreshJwt = async (
     },
     refreshTokenSecret,
     {
-      expiresIn: 60,
+      expiresIn: '30d',
     }
   )
 
