@@ -8,4 +8,6 @@ export const SERVER_ERROR = 'Помилка серверу',
   INCORRECT_PASSWORD_MIN_LENGTH = 'Пароль повинен містити принанні 6 літер',
   INCORRECT_PASSWORD_MAX_LENGTH = 'Пароль повинен містити не більше 80 літер',
   INCORRECT_PASSWORD_CONFIRMATION = 'Паролі не співпадають',
-  INCORRECT_EMAIL_OR_PASSWORD = 'Невірний емейл або пароль'
+  INCORRECT_EMAIL_OR_PASSWORD = 'Невірний емейл або пароль',
+  REFRESH_TOKEN_ERROR = 'Невірний рефреш токен',
+  REFRESH_TOKEN_EXPIRED_ERROR = 'Час дії рефреш токену вийшов'

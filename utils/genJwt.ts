@@ -8,7 +8,7 @@ dotenv.config({ path: '.env.local' })
 const accessTokenSecret: string | undefined =
   process.env.JWT_ACCESS_TOKEN_SECRET
 const refreshTokenSecret: string | undefined =
-  process.env.JWT_ACCESS_TOKEN_SECRET
+  process.env.JWT_REFRESH_TOKEN_SECRET
 
 if (!refreshTokenSecret || !accessTokenSecret) {
   throw new Error('Немає ключів для jwt токенів')
@@ -18,11 +18,11 @@ export const genAccessJwt = (id: string | Types.ObjectId): string => {
   id = String(id)
   const token = jwt.sign(
     {
-      id: id,
+      _id: id,
     },
     accessTokenSecret,
     {
-      expiresIn: '10m',
+      expiresIn: 20,
     }
   )
   return token
@@ -34,11 +34,11 @@ export const genRefreshJwt = async (
   id = String(id)
   const token = jwt.sign(
     {
-      id: id,
+      _id: id,
     },
     refreshTokenSecret,
     {
-      expiresIn: '30d',
+      expiresIn: 60,
     }
   )
 
