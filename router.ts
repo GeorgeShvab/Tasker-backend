@@ -17,6 +17,7 @@ import updateAvatar from './controllers/user/updateAvatar'
 import updateName from './controllers/user/updateName'
 import updatePassword from './controllers/user/updatePassword'
 import changeMode from './controllers/user/changeMode'
+import getMe from './controllers/user/getMe'
 
 const routes = require('./routes.json')
 
@@ -51,5 +52,6 @@ router.patch(
   updatePassword
 )
 router.patch('/api/user/update/mode', changeMode)
+router.get('/api/user/get-me', getMe)
 
 export default router

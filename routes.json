@@ -6,13 +6,15 @@
     "/api/user/update/avatar",
     "/api/user/update/name",
     "/api/user/update/password",
-    "/api/user/update/mode"
+    "/api/user/update/mode",
+    "/api/user/get-me"
   ],
   "protected": [
     "/api/refresh-tokens",
     "/api/user/update/avatar",
     "/api/user/update/name",
     "/api/user/update/password",
-    "/api/user/update/mode"
+    "/api/user/update/mode",
+    "/api/user/get-me"
   ]
 }
