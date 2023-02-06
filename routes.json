@@ -5,12 +5,14 @@
     "/api/refresh-tokens",
     "/api/user/update/avatar",
     "/api/user/update/name",
-    "/api/user/update/password"
+    "/api/user/update/password",
+    "/api/user/update/mode"
   ],
   "protected": [
     "/api/refresh-tokens",
     "/api/user/update/avatar",
     "/api/user/update/name",
-    "/api/user/update/password"
+    "/api/user/update/password",
+    "/api/user/update/mode"
   ]
 }

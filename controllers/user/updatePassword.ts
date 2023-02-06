@@ -1,6 +1,10 @@
 import { compare, genSalt, hash } from 'bcrypt'
 import { Request, Response } from 'express'
-import { INCORRECT_OLD_PASSWORD, SERVER_ERROR } from '../../errorMessages'
+import {
+  INCORRECT_OLD_PASSWORD,
+  SERVER_ERROR,
+  USER_NOT_FOUND,
+} from '../../errorMessages'
 import User from '../../models/User'
 
 interface ReqBody {
@@ -20,7 +24,7 @@ const updatePassword = async (
     })
 
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: INCORRECT_OLD_PASSWORD }] })
+      return res.status(400).json({ errors: [{ msg: USER_NOT_FOUND }] })
     }
 
     const passwordComparison = await compare(oldPassword, user.password)

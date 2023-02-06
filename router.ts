@@ -16,6 +16,7 @@ import path from 'path'
 import updateAvatar from './controllers/user/updateAvatar'
 import updateName from './controllers/user/updateName'
 import updatePassword from './controllers/user/updatePassword'
+import changeMode from './controllers/user/changeMode'
 
 const routes = require('./routes.json')
 
@@ -49,5 +50,6 @@ router.patch(
   validator,
   updatePassword
 )
+router.patch('/api/user/update/mode', changeMode)
 
 export default router

@@ -15,4 +15,5 @@ export const SERVER_ERROR = 'Помилка серверу',
   FILE_EXTENSION_ERROR = 'Дозволені тільки .jpg, .jpeg та .png',
   FILE_SIZE_ERROR = 'Дозволені файли розміром не більше 20 мб',
   UNDEFINED_FILE_ERROR = 'Помилка при завантаженні файлу',
-  INCORRECT_OLD_PASSWORD = 'Невірний старий пароль'
+  INCORRECT_OLD_PASSWORD = 'Невірний старий пароль',
+  USER_NOT_FOUND = 'Користувач не знайдений'
