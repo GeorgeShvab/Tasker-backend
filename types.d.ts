@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongoose'
+
 export interface IUser {
   firstName: string
   lastName: string
@@ -31,4 +33,32 @@ declare module 'jsonwebtoken' {
   export interface JwtPayload {
     _id: string
   }
+}
+
+export interface ITask {
+  name: string
+  description: string
+  list: ObjectId
+  date: Date
+  tags: ObjectId[]
+  creator: ObjectId
+}
+
+export interface ITag {
+  name: string
+  creator: ObjectId
+  color: string
+}
+
+export interface IList {
+  name: string
+  color: string
+  creator: ObjectId
+}
+
+export interface ISticker {
+  name: string
+  description: string
+  creator: ObjectId
+  color: string
 }

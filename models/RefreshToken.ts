@@ -8,6 +8,7 @@ const refreshTokenSchema = new Schema<IRefreshToken>(
       type: String,
     },
     user: {
+      ref: 'User',
       required: true,
       type: String,
     },
@@ -18,6 +19,6 @@ const refreshTokenSchema = new Schema<IRefreshToken>(
   }
 )
 
-const RefreshTokenModel = model('Refresh_token', refreshTokenSchema)
+const RefreshToken = model('Refresh_token', refreshTokenSchema)
 
-export default RefreshTokenModel
+export default RefreshToken
