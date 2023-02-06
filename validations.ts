@@ -7,6 +7,7 @@ import {
   INCORRECT_FIRST_NAME_MIN_LENGTH,
   INCORRECT_LAST_NAME_MAX_LENGTH,
   INCORRECT_LAST_NAME_MIN_LENGTH,
+  INCORRECT_OLD_PASSWORD,
   INCORRECT_PASSWORD_CONFIRMATION,
   INCORRECT_PASSWORD_MAX_LENGTH,
   INCORRECT_PASSWORD_MIN_LENGTH,
@@ -113,4 +114,42 @@ export const updateNameValidation = [
     .bail()
     .isLength({ max: 30 })
     .withMessage(INCORRECT_LAST_NAME_MAX_LENGTH),
+]
+
+export const updatePasswordValidation = [
+  body('oldPassword')
+    .exists()
+    .withMessage(INCORRECT_OLD_PASSWORD)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_OLD_PASSWORD)
+    .bail()
+    .isLength({ min: 6 })
+    .withMessage(INCORRECT_OLD_PASSWORD)
+    .bail()
+    .isLength({ max: 80 })
+    .withMessage(INCORRECT_OLD_PASSWORD),
+  body('password')
+    .exists()
+    .withMessage(INCORRECT_PASSWORD_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_PASSWORD_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 6 })
+    .withMessage(INCORRECT_PASSWORD_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 80 })
+    .withMessage(INCORRECT_PASSWORD_MAX_LENGTH),
+  body('passwordConfirmation')
+    .exists()
+    .withMessage(INCORRECT_PASSWORD_CONFIRMATION)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_PASSWORD_CONFIRMATION)
+    .bail()
+    .custom(
+      (value: string, { req }: { req: any }) => value === req.body.password
+    )
+    .withMessage(INCORRECT_PASSWORD_CONFIRMATION),
 ]

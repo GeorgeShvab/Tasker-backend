@@ -8,12 +8,14 @@ import {
   loginValidation,
   registrationValidation,
   updateNameValidation,
+  updatePasswordValidation,
 } from './validations'
 import validator from './validator'
 import express from 'express'
 import path from 'path'
 import updateAvatar from './controllers/user/updateAvatar'
 import updateName from './controllers/user/updateName'
+import updatePassword from './controllers/user/updatePassword'
 
 const routes = require('./routes.json')
 
@@ -40,6 +42,12 @@ router.patch(
   updateNameValidation,
   validator,
   updateName
+)
+router.patch(
+  '/api/user/update/password',
+  updatePasswordValidation,
+  validator,
+  updatePassword
 )
 
 export default router
