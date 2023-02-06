@@ -1,4 +1,9 @@
 {
-  "all": ["/api/registration", "/api/login", "/api/refresh-tokens"],
-  "protected": ["/api/refresh-tokens"]
+  "all": [
+    "/api/registration",
+    "/api/login",
+    "/api/refresh-tokens",
+    "/api/user/avatar"
+  ],
+  "protected": ["/api/refresh-tokens", "/api/user/avatar"]
 }
