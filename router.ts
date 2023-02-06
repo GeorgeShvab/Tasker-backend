@@ -4,11 +4,16 @@ import login from './controllers/user/login'
 import registration from './controllers/user/registration'
 import authorization from './middleware/authorization'
 import protection from './middleware/protection'
-import { loginValidation, registrationValidation } from './validations'
+import {
+  loginValidation,
+  registrationValidation,
+  updateNameValidation,
+} from './validations'
 import validator from './validator'
 import express from 'express'
 import path from 'path'
 import updateAvatar from './controllers/user/updateAvatar'
+import updateName from './controllers/user/updateName'
 
 const routes = require('./routes.json')
 
@@ -29,6 +34,12 @@ router.post('/api/login', loginValidation, validator, login)
 
 router.post('/api/refresh-tokens', refreshTokens)
 
-router.post('/api/user/avatar', updateAvatar)
+router.post('/api/user/update/avatar', updateAvatar)
+router.patch(
+  '/api/user/update/name',
+  updateNameValidation,
+  validator,
+  updateName
+)
 
 export default router

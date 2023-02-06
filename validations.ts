@@ -87,3 +87,30 @@ export const loginValidation = [
     .isEmail()
     .withMessage(INCORRECT_EMAIL_OR_PASSWORD),
 ]
+
+export const updateNameValidation = [
+  body('firstName')
+    .exists()
+    .withMessage(INCORRECT_FIRST_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIRST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 2 })
+    .withMessage(INCORRECT_FIRST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 30 })
+    .withMessage(INCORRECT_FIRST_NAME_MAX_LENGTH),
+  body('lastName')
+    .exists()
+    .withMessage(INCORRECT_LAST_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_LAST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 2 })
+    .withMessage(INCORRECT_LAST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 30 })
+    .withMessage(INCORRECT_LAST_NAME_MAX_LENGTH),
+]

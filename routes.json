@@ -3,7 +3,12 @@
     "/api/registration",
     "/api/login",
     "/api/refresh-tokens",
-    "/api/user/avatar"
+    "/api/user/update/avatar",
+    "/api/user/update/name"
   ],
-  "protected": ["/api/refresh-tokens", "/api/user/avatar"]
+  "protected": [
+    "/api/refresh-tokens",
+    "/api/user/update/avatar",
+    "/api/user/update/name"
+  ]
 }
