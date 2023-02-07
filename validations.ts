@@ -251,15 +251,6 @@ export const updateTaskValidation = addValidator([
       }
     })
     .withMessage(INCORRECT_FIELD_TYPE),
-  body('id')
-    .exists()
-    .withMessage(INCORRECT_FIELD_TYPE)
-    .bail()
-    .isString()
-    .withMessage(INCORRECT_FIELD_TYPE)
-    .bail()
-    .custom(validateDbId)
-    .withMessage(INCORRECT_FIELD_TYPE),
 ])
 
 function addValidator(funcs: ValidationChain[]) {

@@ -49,7 +49,7 @@ router.patch('/api/user/update/mode', changeMode)
 router.get('/api/user/get-me', getMe)
 
 router.post('/api/task', createTaskValidation, createTask)
-router.patch('/api/task', updateTaskValidation, updateTask)
+router.patch('/api/task/:id', updateTaskValidation, updateTask)
 router.patch('/api/task/:id/complete', toggleCompletion)
 router.delete('/api/task/:id', deleteTask)
 

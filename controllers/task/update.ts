@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { FORBIDDEN, TASK_NOT_FOUND } from '../../errorMessages'
 import Tag from '../../models/Tag'
 import Task from '../../models/Task'
+import validateDbId from '../../utils/validateDbId'
 
 interface ReqBody {
   name: string
@@ -9,12 +10,20 @@ interface ReqBody {
   list?: string
   date?: Date
   tags?: string[]
-  id: string
 }
 
-const updateTask = async (req: Request, res: Response) => {
+const updateTask = async (
+  req: Request<{ id: string }, any, ReqBody>,
+  res: Response
+) => {
   try {
-    const { name, description, id, list, date, tags } = req.body
+    const { name, description, list, date, tags } = req.body
+
+    const { id } = req.params
+
+    if (!validateDbId(id)) {
+      return res.status(404).json({ errors: [{ msg: TASK_NOT_FOUND }] })
+    }
 
     const oldTask = await Task.findOne({
       _id: id,
