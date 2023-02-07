@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { body } from 'express-validator'
+import { body, ValidationChain } from 'express-validator'
 import {
   FIELD_IS_REQUIRED,
   INCORRECT_EMAIL,
@@ -17,8 +17,9 @@ import {
   INCORRECT_TASK_NAME_MIN_LENGTH,
 } from './errorMessages'
 import validateDbId from './utils/validateDbId'
+import validator from './validator'
 
-export const registrationValidation = [
+export const registrationValidation = addValidator([
   body('email')
     .exists()
     .withMessage(INCORRECT_EMAIL)
@@ -75,9 +76,9 @@ export const registrationValidation = [
       (value: string, { req }: { req: any }) => value === req.body.password
     )
     .withMessage(INCORRECT_PASSWORD_CONFIRMATION),
-]
+])
 
-export const loginValidation = [
+export const loginValidation = addValidator([
   body('password')
     .exists()
     .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
@@ -92,9 +93,9 @@ export const loginValidation = [
     .withMessage(INCORRECT_EMAIL_OR_PASSWORD)
     .isEmail()
     .withMessage(INCORRECT_EMAIL_OR_PASSWORD),
-]
+])
 
-export const updateNameValidation = [
+export const updateNameValidation = addValidator([
   body('firstName')
     .exists()
     .withMessage(INCORRECT_FIRST_NAME_MIN_LENGTH)
@@ -119,9 +120,9 @@ export const updateNameValidation = [
     .bail()
     .isLength({ max: 30 })
     .withMessage(INCORRECT_LAST_NAME_MAX_LENGTH),
-]
+])
 
-export const updatePasswordValidation = [
+export const updatePasswordValidation = addValidator([
   body('oldPassword')
     .exists()
     .withMessage(INCORRECT_OLD_PASSWORD)
@@ -157,9 +158,8 @@ export const updatePasswordValidation = [
       (value: string, { req }: { req: any }) => value === req.body.password
     )
     .withMessage(INCORRECT_PASSWORD_CONFIRMATION),
-]
-
-export const createTaskValidation = [
+])
+export const createTaskValidation = addValidator([
   body('name')
     .exists()
     .withMessage(FIELD_IS_REQUIRED)
@@ -204,9 +204,9 @@ export const createTaskValidation = [
       }
     })
     .withMessage(INCORRECT_FIELD_TYPE),
-]
+])
 
-export const updateTaskValidation = [
+export const updateTaskValidation = addValidator([
   body('name')
     .exists()
     .withMessage(FIELD_IS_REQUIRED)
@@ -260,4 +260,8 @@ export const updateTaskValidation = [
     .bail()
     .custom(validateDbId)
     .withMessage(INCORRECT_FIELD_TYPE),
-]
+])
+
+function addValidator(funcs: ValidationChain[]) {
+  return [...funcs, validator]
+}

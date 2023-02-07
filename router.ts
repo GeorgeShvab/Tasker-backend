@@ -12,7 +12,6 @@ import {
   updatePasswordValidation,
   updateTaskValidation,
 } from './validations'
-import validator from './validator'
 import express from 'express'
 import path from 'path'
 import updateAvatar from './controllers/user/updateAvatar'
@@ -31,34 +30,23 @@ router.use('/static', express.static(path.join(__dirname, 'static')))
 router.use(authorization)
 router.use(routes.protected, protection)
 
-router.post(
-  '/api/registration',
-  registrationValidation,
-  validator,
-  registration
-)
+router.post('/api/registration', registrationValidation, registration)
 
-router.post('/api/login', loginValidation, validator, login)
+router.post('/api/login', loginValidation, login)
 
 router.post('/api/refresh-tokens', refreshTokens)
 
 router.post('/api/user/update/avatar', updateAvatar)
-router.patch(
-  '/api/user/update/name',
-  updateNameValidation,
-  validator,
-  updateName
-)
+router.patch('/api/user/update/name', updateNameValidation, updateName)
 router.patch(
   '/api/user/update/password',
   updatePasswordValidation,
-  validator,
   updatePassword
 )
 router.patch('/api/user/update/mode', changeMode)
 router.get('/api/user/get-me', getMe)
 
-router.post('/api/task', createTaskValidation, validator, createTask)
-router.patch('/api/task', updateTaskValidation, validator, updateTask)
+router.post('/api/task', createTaskValidation, createTask)
+router.patch('/api/task', updateTaskValidation, updateTask)
 
 export default router
