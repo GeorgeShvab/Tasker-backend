@@ -16,4 +16,16 @@ export const SERVER_ERROR = 'Помилка серверу',
   FILE_SIZE_ERROR = 'Дозволені файли розміром не більше 20 мб',
   UNDEFINED_FILE_ERROR = 'Помилка при завантаженні файлу',
   INCORRECT_OLD_PASSWORD = 'Невірний старий пароль',
-  USER_NOT_FOUND = 'Користувач не знайдений'
+  USER_NOT_FOUND = 'Користувач не знайдений',
+  FIELD_IS_REQUIRED = 'Це поле повинно бути заповнене',
+  INCORRECT_TASK_NAME_MAX_LENGTH =
+    'Назва завдання не може містити більше 300 літер',
+  INCORRECT_TASK_NAME_MIN_LENGTH =
+    'Назва завдання повинна містити принанні 1 літеру',
+  INCORRECT_TASK_DESCRIPTION_MAX_LENGTH =
+    'Опис завдання не може містити більше 2000 літер',
+  INCORRECT_TASK_DESCRIPTION_MIN_LENGTH =
+    'Опис завдання повинен містити принанні 1 літеру',
+  INCORRECT_FIELD_TYPE = 'Невірний формат значення',
+  TASK_NOT_FOUND = 'Завдання не знайдено',
+  FORBIDDEN = 'У вас недостатньо прав для виконання цієї дії'

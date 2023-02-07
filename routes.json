@@ -7,7 +7,8 @@
     "/api/user/update/name",
     "/api/user/update/password",
     "/api/user/update/mode",
-    "/api/user/get-me"
+    "/api/user/get-me",
+    "/api/task"
   ],
   "protected": [
     "/api/refresh-tokens",
@@ -15,6 +16,7 @@
     "/api/user/update/name",
     "/api/user/update/password",
     "/api/user/update/mode",
-    "/api/user/get-me"
+    "/api/user/get-me",
+    "/api/task"
   ]
 }

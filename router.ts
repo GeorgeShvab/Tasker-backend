@@ -7,8 +7,10 @@ import protection from './middleware/protection'
 import {
   loginValidation,
   registrationValidation,
+  createTaskValidation,
   updateNameValidation,
   updatePasswordValidation,
+  updateTaskValidation,
 } from './validations'
 import validator from './validator'
 import express from 'express'
@@ -18,6 +20,8 @@ import updateName from './controllers/user/updateName'
 import updatePassword from './controllers/user/updatePassword'
 import changeMode from './controllers/user/changeMode'
 import getMe from './controllers/user/getMe'
+import createTask from './controllers/task/create'
+import updateTask from './controllers/task/update'
 
 const routes = require('./routes.json')
 
@@ -53,5 +57,8 @@ router.patch(
 )
 router.patch('/api/user/update/mode', changeMode)
 router.get('/api/user/get-me', getMe)
+
+router.post('/api/task', createTaskValidation, validator, createTask)
+router.patch('/api/task', updateTaskValidation, validator, updateTask)
 
 export default router

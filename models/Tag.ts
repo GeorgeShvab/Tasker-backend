@@ -1,4 +1,4 @@
-import { model, Schema, Types } from 'mongoose'
+import { Document, Model, model, Schema, Types } from 'mongoose'
 import { ITag } from '../types'
 import getRandomColor from '../utils/getRandomColor'
 
@@ -24,6 +24,29 @@ const tagSchema = new Schema<ITag>(
   }
 )
 
-const Tag = model('Tag', tagSchema)
+tagSchema.static(
+  'findOneOrCreate',
+  async function (
+    condition: Object,
+    createArgs: { name: string; creator: string | Types.ObjectId }
+  ) {
+    const doc = await this.findOne(condition)
+
+    if (doc) {
+      return doc
+    }
+
+    return await this.create(createArgs)
+  }
+)
+
+interface TagModel extends Model<ITag> {
+  findOneOrCreate(
+    condition: Object,
+    createArgs: { name: string; creator: string | Types.ObjectId }
+  ): Document & ITag
+}
+
+const Tag = model<ITag, TagModel>('Tag', tagSchema)
 
 export default Tag

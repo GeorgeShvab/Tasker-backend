@@ -1,8 +1,10 @@
 import { Request } from 'express'
 import { body } from 'express-validator'
 import {
+  FIELD_IS_REQUIRED,
   INCORRECT_EMAIL,
   INCORRECT_EMAIL_OR_PASSWORD,
+  INCORRECT_FIELD_TYPE,
   INCORRECT_FIRST_NAME_MAX_LENGTH,
   INCORRECT_FIRST_NAME_MIN_LENGTH,
   INCORRECT_LAST_NAME_MAX_LENGTH,
@@ -11,7 +13,10 @@ import {
   INCORRECT_PASSWORD_CONFIRMATION,
   INCORRECT_PASSWORD_MAX_LENGTH,
   INCORRECT_PASSWORD_MIN_LENGTH,
+  INCORRECT_TASK_NAME_MAX_LENGTH,
+  INCORRECT_TASK_NAME_MIN_LENGTH,
 } from './errorMessages'
+import validateDbId from './utils/validateDbId'
 
 export const registrationValidation = [
   body('email')
@@ -152,4 +157,107 @@ export const updatePasswordValidation = [
       (value: string, { req }: { req: any }) => value === req.body.password
     )
     .withMessage(INCORRECT_PASSWORD_CONFIRMATION),
+]
+
+export const createTaskValidation = [
+  body('name')
+    .exists()
+    .withMessage(FIELD_IS_REQUIRED)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_TASK_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 300 })
+    .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
+  body('description')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_TASK_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 2000 })
+    .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
+  body('list')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .custom(validateDbId)
+    .withMessage(INCORRECT_FIELD_TYPE),
+  body('date').optional().isString().withMessage(INCORRECT_FIELD_TYPE),
+  body('tags')
+    .optional()
+    .isArray()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .custom((value: any) => {
+      if (Array.isArray(value)) {
+        if (!value.length) return true
+        return value.every((item) => typeof item === 'string')
+      } else {
+        return false
+      }
+    })
+    .withMessage(INCORRECT_FIELD_TYPE),
+]
+
+export const updateTaskValidation = [
+  body('name')
+    .exists()
+    .withMessage(FIELD_IS_REQUIRED)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_TASK_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 300 })
+    .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
+  body('description')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_TASK_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 2000 })
+    .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
+  body('list')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .custom(validateDbId)
+    .withMessage(INCORRECT_FIELD_TYPE),
+  body('date').optional().isString().withMessage(INCORRECT_FIELD_TYPE),
+  body('tags')
+    .optional()
+    .isArray()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .custom((value: any) => {
+      if (Array.isArray(value)) {
+        if (!value.length) return true
+        return value.every((item) => typeof item === 'string')
+      } else {
+        return false
+      }
+    })
+    .withMessage(INCORRECT_FIELD_TYPE),
+  body('id')
+    .exists()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .custom(validateDbId)
+    .withMessage(INCORRECT_FIELD_TYPE),
 ]
