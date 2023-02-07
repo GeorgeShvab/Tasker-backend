@@ -21,6 +21,7 @@ import changeMode from './controllers/user/changeMode'
 import getMe from './controllers/user/getMe'
 import createTask from './controllers/task/create'
 import updateTask from './controllers/task/update'
+import toggleCompletion from './controllers/task/toggleCompletion'
 
 const routes = require('./routes.json')
 
@@ -48,5 +49,6 @@ router.get('/api/user/get-me', getMe)
 
 router.post('/api/task', createTaskValidation, createTask)
 router.patch('/api/task', updateTaskValidation, updateTask)
+router.patch('/api/task/:id/complete', toggleCompletion)
 
 export default router

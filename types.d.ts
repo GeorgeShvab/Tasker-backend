@@ -42,6 +42,7 @@ export interface ITask {
   date: Date
   tags: ObjectId[]
   creator: ObjectId
+  completed: boolean
 }
 
 export interface ITag {

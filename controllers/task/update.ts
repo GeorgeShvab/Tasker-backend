@@ -25,7 +25,7 @@ const updateTask = async (req: Request, res: Response) => {
     }
 
     if (String(oldTask.creator) !== req.user) {
-      return res.status(404).json({ errors: [{ msg: FORBIDDEN }] })
+      return res.status(403).json({ errors: [{ msg: FORBIDDEN }] })
     }
 
     const tagsIds: string[] = tags

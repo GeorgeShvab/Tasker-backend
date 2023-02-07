@@ -7,6 +7,10 @@ const taskSchema = new Schema<ITask>(
       required: true,
       type: String,
     },
+    completed: {
+      default: false,
+      type: Boolean,
+    },
     description: {
       default: null,
       type: String,
