@@ -1,14 +1,19 @@
 import { Request, Response } from 'express'
 import { FORBIDDEN, SERVER_ERROR, TASK_NOT_FOUND } from '../../errorMessages'
 import Task from '../../models/Task'
+import validateDbId from '../../utils/validateDbId'
 
 const toggleCompletion = async (
   req: Request<{ id: string }>,
   res: Response
 ) => {
-  const { id } = req.params
-
   try {
+    const { id } = req.params
+
+    if (!validateDbId(id)) {
+      return res.status(404).json({ errors: [{ msg: TASK_NOT_FOUND }] })
+    }
+
     const task = await Task.findOne({
       _id: id,
     })
