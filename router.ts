@@ -13,6 +13,7 @@ import {
   updateTaskValidation,
   createListValidation,
   updateListValidation,
+  createTagValidation,
 } from './validations'
 import express from 'express'
 import path from 'path'
@@ -30,6 +31,7 @@ import getTasksByTag from './controllers/task/getTasksByTag'
 import createList from './controllers/list/create'
 import deleteList from './controllers/list/delete'
 import updateList from './controllers/list/update'
+import createTag from './controllers/tag/create'
 
 const routes = require('./routes.json')
 
@@ -67,5 +69,7 @@ router.post('/api/list', createListValidation, createList)
 
 router.delete('/api/list/:id', deleteList)
 router.patch('/api/list/:id', updateListValidation, updateList)
+
+router.post('/api/tag', createTagValidation, createTag)
 
 export default router
