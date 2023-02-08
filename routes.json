@@ -11,7 +11,8 @@
     "/api/task",
     "/api/task/:id/complete",
     "/api/task/:id",
-    "/api/tasks"
+    "/api/tasks",
+    "/api/tag/:id/tasks"
   ],
   "protected": [
     "/api/refresh-tokens",
@@ -23,6 +24,7 @@
     "/api/task",
     "/api/task/:id/complete",
     "/api/task/:id",
-    "/api/tasks"
+    "/api/tasks",
+    "/api/tag/:id/tasks"
   ]
 }
