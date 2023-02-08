@@ -10,7 +10,8 @@
     "/api/user/get-me",
     "/api/task",
     "/api/task/:id/complete",
-    "/api/task/:id"
+    "/api/task/:id",
+    "/api/tasks"
   ],
   "protected": [
     "/api/refresh-tokens",
@@ -21,6 +22,7 @@
     "/api/user/get-me",
     "/api/task",
     "/api/task/:id/complete",
-    "/api/task/:id"
+    "/api/task/:id",
+    "/api/tasks"
   ]
 }

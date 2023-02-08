@@ -23,6 +23,7 @@ import createTask from './controllers/task/create'
 import updateTask from './controllers/task/update'
 import toggleCompletion from './controllers/task/toggleCompletion'
 import deleteTask from './controllers/task/delete'
+import getTasks from './controllers/task/getTasks'
 
 const routes = require('./routes.json')
 
@@ -52,5 +53,6 @@ router.post('/api/task', createTaskValidation, createTask)
 router.patch('/api/task/:id', updateTaskValidation, updateTask)
 router.patch('/api/task/:id/complete', toggleCompletion)
 router.delete('/api/task/:id', deleteTask)
+router.get('/api/tasks', getTasks)
 
 export default router
