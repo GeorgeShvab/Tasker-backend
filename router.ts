@@ -14,6 +14,7 @@ import {
   createListValidation,
   updateListValidation,
   createTagValidation,
+  updateTagValidation,
 } from './validations'
 import express from 'express'
 import path from 'path'
@@ -33,6 +34,7 @@ import deleteList from './controllers/list/delete'
 import updateList from './controllers/list/update'
 import createTag from './controllers/tag/create'
 import deleteTag from './controllers/tag/delete'
+import updateTag from './controllers/tag/update'
 
 const routes = require('./routes.json')
 
@@ -73,5 +75,6 @@ router.patch('/api/list/:id', updateListValidation, updateList)
 
 router.post('/api/tag', createTagValidation, createTag)
 router.delete('/api/tag/:id', deleteTag)
+router.patch('/api/tag/:id', updateTagValidation, updateTag)
 
 export default router

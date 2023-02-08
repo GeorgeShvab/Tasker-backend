@@ -313,6 +313,21 @@ export const createTagValidation = addValidator([
     .bail()
     .isLength({ max: 30 })
     .withMessage(INCORRECT_TAG_NAME_MAX_LENGTH),
+])
+
+export const updateTagValidation = addValidator([
+  body('name')
+    .exists()
+    .withMessage(INCORRECT_TAG_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_TAG_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 30 })
+    .withMessage(INCORRECT_TAG_NAME_MAX_LENGTH),
   body('color')
     .exists()
     .withMessage(INCORRECT_COLOR)
