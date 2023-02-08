@@ -9,6 +9,8 @@ import {
   INCORRECT_FIRST_NAME_MIN_LENGTH,
   INCORRECT_LAST_NAME_MAX_LENGTH,
   INCORRECT_LAST_NAME_MIN_LENGTH,
+  INCORRECT_LIST_NAME_MAX_LENGTH,
+  INCORRECT_LIST_NAME_MIN_LENGTH,
   INCORRECT_OLD_PASSWORD,
   INCORRECT_PASSWORD_CONFIRMATION,
   INCORRECT_PASSWORD_MAX_LENGTH,
@@ -251,6 +253,21 @@ export const updateTaskValidation = addValidator([
       }
     })
     .withMessage(INCORRECT_FIELD_TYPE),
+])
+
+export const createListValidation = addValidator([
+  body('name')
+    .exists()
+    .withMessage(INCORRECT_LIST_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_LIST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 100 })
+    .withMessage(INCORRECT_LIST_NAME_MAX_LENGTH),
 ])
 
 function addValidator(funcs: ValidationChain[]) {

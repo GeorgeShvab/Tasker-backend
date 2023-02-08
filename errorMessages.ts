@@ -29,4 +29,8 @@ export const SERVER_ERROR = 'Помилка серверу',
   INCORRECT_FIELD_TYPE = 'Невірний формат значення',
   TASK_NOT_FOUND = 'Завдання не знайдено',
   FORBIDDEN = 'У вас недостатньо прав для виконання цієї дії',
-  TAG_NOT_FOUND = 'Тег не знайдено'
+  TAG_NOT_FOUND = 'Тег не знайдено',
+  INCORRECT_LIST_NAME_MAX_LENGTH =
+    'Назва списку не може містити більше 100 літер',
+  INCORRECT_LIST_NAME_MIN_LENGTH =
+    'Назва списку повинна містити принанні 1 літеру'

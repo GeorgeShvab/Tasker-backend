@@ -11,6 +11,7 @@ import {
   updateNameValidation,
   updatePasswordValidation,
   updateTaskValidation,
+  createListValidation,
 } from './validations'
 import express from 'express'
 import path from 'path'
@@ -25,6 +26,7 @@ import toggleCompletion from './controllers/task/toggleCompletion'
 import deleteTask from './controllers/task/delete'
 import getTasks from './controllers/task/getTasks'
 import getTasksByTag from './controllers/task/getTasksByTag'
+import createList from './controllers/list/create'
 
 const routes = require('./routes.json')
 
@@ -57,5 +59,7 @@ router.delete('/api/task/:id', deleteTask)
 router.get('/api/tasks', getTasks)
 
 router.get('/api/tag/:id/tasks', getTasksByTag)
+
+router.post('/api/list', createListValidation, createList)
 
 export default router
