@@ -2,6 +2,7 @@ import { Request } from 'express'
 import { body, ValidationChain } from 'express-validator'
 import {
   FIELD_IS_REQUIRED,
+  INCORRECT_COLOR,
   INCORRECT_EMAIL,
   INCORRECT_EMAIL_OR_PASSWORD,
   INCORRECT_FIELD_TYPE,
@@ -268,6 +269,33 @@ export const createListValidation = addValidator([
     .bail()
     .isLength({ max: 100 })
     .withMessage(INCORRECT_LIST_NAME_MAX_LENGTH),
+])
+
+export const updateListValidation = addValidator([
+  body('name')
+    .exists()
+    .withMessage(INCORRECT_LIST_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_FIELD_TYPE)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_LIST_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 100 })
+    .withMessage(INCORRECT_LIST_NAME_MAX_LENGTH),
+  body('color')
+    .exists()
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .isLength({ min: 7, max: 7 })
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .custom((value: string) => value.charAt(0) === '#')
+    .withMessage(INCORRECT_COLOR),
 ])
 
 function addValidator(funcs: ValidationChain[]) {

@@ -34,4 +34,5 @@ export const SERVER_ERROR = 'Помилка серверу',
     'Назва списку не може містити більше 100 літер',
   INCORRECT_LIST_NAME_MIN_LENGTH =
     'Назва списку повинна містити принанні 1 літеру',
-  LIST_NOT_FOUND = 'Список не знайдено'
+  LIST_NOT_FOUND = 'Список не знайдено',
+  INCORRECT_COLOR = 'Некорректний колір'
