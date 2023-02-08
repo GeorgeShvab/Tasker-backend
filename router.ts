@@ -36,6 +36,7 @@ import createTag from './controllers/tag/create'
 import deleteTag from './controllers/tag/delete'
 import updateTag from './controllers/tag/update'
 import getList from './controllers/list/get'
+import getTasksByList from './controllers/task/getTasksByList'
 
 const routes = require('./routes.json')
 
@@ -78,5 +79,7 @@ router.post('/api/tag', createTagValidation, createTag)
 router.delete('/api/tag/:id', deleteTag)
 router.patch('/api/tag/:id', updateTagValidation, updateTag)
 router.get('/api/list/:id', getList)
+
+router.get('/api/list/:id/tasks', getTasksByList)
 
 export default router
