@@ -27,6 +27,7 @@ import deleteTask from './controllers/task/delete'
 import getTasks from './controllers/task/getTasks'
 import getTasksByTag from './controllers/task/getTasksByTag'
 import createList from './controllers/list/create'
+import deleteList from './controllers/list/delete'
 
 const routes = require('./routes.json')
 
@@ -61,5 +62,7 @@ router.get('/api/tasks', getTasks)
 router.get('/api/tag/:id/tasks', getTasksByTag)
 
 router.post('/api/list', createListValidation, createList)
+
+router.delete('/api/list/:id', deleteList)
 
 export default router
