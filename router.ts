@@ -32,6 +32,7 @@ import createList from './controllers/list/create'
 import deleteList from './controllers/list/delete'
 import updateList from './controllers/list/update'
 import createTag from './controllers/tag/create'
+import deleteTag from './controllers/tag/delete'
 
 const routes = require('./routes.json')
 
@@ -71,5 +72,6 @@ router.delete('/api/list/:id', deleteList)
 router.patch('/api/list/:id', updateListValidation, updateList)
 
 router.post('/api/tag', createTagValidation, createTag)
+router.delete('/api/tag/:id', deleteTag)
 
 export default router
