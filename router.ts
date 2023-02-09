@@ -43,6 +43,7 @@ import createSticker from './controllers/sticker/create'
 import deleteSticker from './controllers/sticker/delete'
 import updateSticker from './controllers/sticker/update'
 import getStickers from './controllers/sticker/getStickers'
+import logout from './controllers/user/logout'
 
 const routes = require('./routes.json')
 
@@ -92,5 +93,7 @@ router.post('/api/sticker', createStickerValidation, createSticker)
 router.delete('/api/sticker/:id', deleteSticker)
 router.patch('/api/sticker/:id', updateStickerValidation, updateSticker)
 router.get('/api/stickers', getStickers)
+
+router.post('/api/logout', logout)
 
 export default router

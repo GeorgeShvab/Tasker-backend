@@ -2,6 +2,7 @@
   "all": [
     "/api/registration",
     "/api/login",
+    "/api/logout",
     "/api/refresh-tokens",
     "/api/user/update/avatar",
     "/api/user/update/name",
@@ -41,6 +42,7 @@
     "/api/list/:id/tasks",
     "/api/sticker",
     "/api/sticker/:id",
-    "/api/stickers"
+    "/api/stickers",
+    "/api/logout"
   ]
 }
