@@ -17,7 +17,10 @@
     "/api/list/:id",
     "/api/tag",
     "/api/tag/:id",
-    "/api/list/:id/tasks"
+    "/api/list/:id/tasks",
+    "/api/sticker",
+    "/api/sticker/:id",
+    "/api/stickers"
   ],
   "protected": [
     "/api/refresh-tokens",
@@ -35,6 +38,9 @@
     "/api/list/:id",
     "/api/tag",
     "/api/tag/:id",
-    "/api/list/:id/tasks"
+    "/api/list/:id/tasks",
+    "/api/sticker",
+    "/api/sticker/:id",
+    "/api/stickers"
   ]
 }

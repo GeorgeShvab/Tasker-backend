@@ -7,6 +7,8 @@ const sortTypes = [
   'name',
   'date',
   '-date',
+  'updatedAt',
+  '-updatedAt',
 ]
 
 const validateSort = (value: any): string | null => {

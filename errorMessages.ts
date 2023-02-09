@@ -38,4 +38,14 @@ export const SERVER_ERROR = 'Помилка серверу',
   INCORRECT_COLOR = 'Некорректний колір',
   TAG_ALREADY_EXISTS_ERROR = 'Тег з таким іменем вже існує',
   INCORRECT_TAG_NAME_MAX_LENGTH = 'Назва тегу не може містити більше 30 літер',
-  INCORRECT_TAG_NAME_MIN_LENGTH = 'Назва тегу повинна містити принанні 1 літеру'
+  INCORRECT_TAG_NAME_MIN_LENGTH =
+    'Назва тегу повинна містити принанні 1 літеру',
+  INCORRECT_STICKER_DESCRIPTION_MAX_LENGTH =
+    'Текст стікера не може містити більше 1000 символів',
+  INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH =
+    'Текст стікера повинен містити принанні 1 символ',
+  INCORRECT_STICKER_NAME_MAX_LENGTH =
+    'Назва стікера не може містити більше 50 символів',
+  INCORRECT_STICKER_NAME_MIN_LENGTH =
+    'Назва стікера повинна містити принанні 1 символ',
+  STICKER_NOT_FOUND = 'Стікер не знайдено'

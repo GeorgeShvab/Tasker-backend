@@ -15,6 +15,8 @@ import {
   updateListValidation,
   createTagValidation,
   updateTagValidation,
+  createStickerValidation,
+  updateStickerValidation,
 } from './validations'
 import express from 'express'
 import path from 'path'
@@ -37,6 +39,10 @@ import deleteTag from './controllers/tag/delete'
 import updateTag from './controllers/tag/update'
 import getList from './controllers/list/get'
 import getTasksByList from './controllers/task/getTasksByList'
+import createSticker from './controllers/sticker/create'
+import deleteSticker from './controllers/sticker/delete'
+import updateSticker from './controllers/sticker/update'
+import getStickers from './controllers/sticker/getStickers'
 
 const routes = require('./routes.json')
 
@@ -81,5 +87,10 @@ router.patch('/api/tag/:id', updateTagValidation, updateTag)
 router.get('/api/list/:id', getList)
 
 router.get('/api/list/:id/tasks', getTasksByList)
+
+router.post('/api/sticker', createStickerValidation, createSticker)
+router.delete('/api/sticker/:id', deleteSticker)
+router.patch('/api/sticker/:id', updateStickerValidation, updateSticker)
+router.get('/api/stickers', getStickers)
 
 export default router

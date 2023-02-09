@@ -16,6 +16,10 @@ import {
   INCORRECT_PASSWORD_CONFIRMATION,
   INCORRECT_PASSWORD_MAX_LENGTH,
   INCORRECT_PASSWORD_MIN_LENGTH,
+  INCORRECT_STICKER_DESCRIPTION_MAX_LENGTH,
+  INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH,
+  INCORRECT_STICKER_NAME_MAX_LENGTH,
+  INCORRECT_STICKER_NAME_MIN_LENGTH,
   INCORRECT_TAG_NAME_MAX_LENGTH,
   INCORRECT_TAG_NAME_MIN_LENGTH,
   INCORRECT_TASK_NAME_MAX_LENGTH,
@@ -328,6 +332,68 @@ export const updateTagValidation = addValidator([
     .bail()
     .isLength({ max: 30 })
     .withMessage(INCORRECT_TAG_NAME_MAX_LENGTH),
+  body('color')
+    .exists()
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .isLength({ min: 7, max: 7 })
+    .withMessage(INCORRECT_COLOR)
+    .bail()
+    .custom((value: string) => value.charAt(0) === '#')
+    .withMessage(INCORRECT_COLOR),
+])
+
+export const createStickerValidation = addValidator([
+  body('name')
+    .exists()
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 50 })
+    .withMessage(INCORRECT_STICKER_NAME_MAX_LENGTH),
+  body('description')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 1000 })
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MAX_LENGTH),
+])
+
+export const updateStickerValidation = addValidator([
+  body('name')
+    .exists()
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isString()
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_STICKER_NAME_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 50 })
+    .withMessage(INCORRECT_STICKER_NAME_MAX_LENGTH),
+  body('description')
+    .optional()
+    .isString()
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH)
+    .bail()
+    .isLength({ min: 1 })
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MIN_LENGTH)
+    .bail()
+    .isLength({ max: 1000 })
+    .withMessage(INCORRECT_STICKER_DESCRIPTION_MAX_LENGTH),
   body('color')
     .exists()
     .withMessage(INCORRECT_COLOR)
