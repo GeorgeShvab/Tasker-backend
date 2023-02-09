@@ -28,6 +28,9 @@ const stickerSchema = new Schema<ISticker>(
   }
 )
 
+stickerSchema.set('toObject', { virtuals: true })
+stickerSchema.set('toJSON', { virtuals: true })
+
 const Sticker = model('Sticker', stickerSchema)
 
 export default Sticker

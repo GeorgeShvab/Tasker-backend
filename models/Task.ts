@@ -41,6 +41,9 @@ const taskSchema = new Schema<ITask>(
   }
 )
 
+taskSchema.set('toObject', { virtuals: true })
+taskSchema.set('toJSON', { virtuals: true })
+
 const Task = model('Task', taskSchema)
 
 export default Task

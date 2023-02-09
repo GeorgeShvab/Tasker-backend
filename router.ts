@@ -44,6 +44,7 @@ import deleteSticker from './controllers/sticker/delete'
 import updateSticker from './controllers/sticker/update'
 import getStickers from './controllers/sticker/getStickers'
 import logout from './controllers/user/logout'
+import getLists from './controllers/list/getLists'
 
 const routes = require('./routes.json')
 
@@ -86,6 +87,7 @@ router.post('/api/tag', createTagValidation, createTag)
 router.delete('/api/tag/:id', deleteTag)
 router.patch('/api/tag/:id', updateTagValidation, updateTag)
 router.get('/api/list/:id', getList)
+router.get('/api/lists', getLists)
 
 router.get('/api/list/:id/tasks', getTasksByList)
 

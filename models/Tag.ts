@@ -24,6 +24,13 @@ const tagSchema = new Schema<ITag>(
   }
 )
 
+tagSchema.virtual('tasks', {
+  localField: '_id',
+  foreignField: 'tags',
+  ref: 'Task',
+  count: true,
+})
+
 tagSchema.static(
   'findOneOrCreate',
   async function (
@@ -46,6 +53,9 @@ interface TagModel extends Model<ITag> {
     createArgs: { name: string; creator: string | Types.ObjectId }
   ): Document & ITag
 }
+
+tagSchema.set('toObject', { virtuals: true })
+tagSchema.set('toJSON', { virtuals: true })
 
 const Tag = model<ITag, TagModel>('Tag', tagSchema)
 

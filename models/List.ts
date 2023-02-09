@@ -24,6 +24,16 @@ const listSchema = new Schema<IList>(
   }
 )
 
+listSchema.virtual('tasks', {
+  localField: '_id',
+  foreignField: 'list',
+  ref: 'Task',
+  count: true,
+})
+
+listSchema.set('toObject', { virtuals: true })
+listSchema.set('toJSON', { virtuals: true })
+
 const List = model('List', listSchema)
 
 export default List

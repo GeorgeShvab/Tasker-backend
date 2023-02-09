@@ -59,6 +59,9 @@ UserSchema.set('toJSON', {
   },
 })
 
+UserSchema.set('toObject', { virtuals: true })
+UserSchema.set('toJSON', { virtuals: true })
+
 const User = model('User', UserSchema)
 
 export default User

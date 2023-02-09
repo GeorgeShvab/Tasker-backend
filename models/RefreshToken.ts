@@ -19,6 +19,9 @@ const refreshTokenSchema = new Schema<IRefreshToken>(
   }
 )
 
+refreshTokenSchema.set('toObject', { virtuals: true })
+refreshTokenSchema.set('toJSON', { virtuals: true })
+
 const RefreshToken = model('Refresh_token', refreshTokenSchema)
 
 export default RefreshToken
