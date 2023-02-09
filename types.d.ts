@@ -63,3 +63,5 @@ export interface ISticker {
   creator: ObjectId
   color: string
 }
+
+export type Period = 'today' | 'tomorrow' | 'week' | 'next_week'

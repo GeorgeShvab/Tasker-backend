@@ -4,6 +4,7 @@ import List from '../../models/List'
 import Task from '../../models/Task'
 import validateDbId from '../../utils/validateDbId'
 import validateNumber from '../../utils/validateNumber'
+import validatePeriod from '../../utils/validatePeriod'
 import validateSort from '../../utils/validateSort'
 
 const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
@@ -18,6 +19,8 @@ const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
         : null
 
     const page: number = validateNumber(req.query.page) || 0
+
+    const period = validatePeriod(req.query.period)
 
     const sort = validateSort(req.query.sort) || '-createdAt'
 
@@ -38,7 +41,15 @@ const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
     const tasks = await Task.find({
       $and: [
         { list: id },
-        { completed: status === null ? { $exists: true } : status },
+        status === null ? {} : { completed: status },
+        period
+          ? {
+              date: {
+                $gte: period[0],
+                $lt: period[1],
+              },
+            }
+          : {},
       ],
     })
       .sort(sort)
