@@ -45,6 +45,8 @@ import updateSticker from './controllers/sticker/update'
 import getStickers from './controllers/sticker/getStickers'
 import logout from './controllers/user/logout'
 import getLists from './controllers/list/getLists'
+import getTags from './controllers/tag/getTags'
+import getTag from './controllers/tag/getTag'
 
 const routes = require('./routes.json')
 
@@ -97,5 +99,8 @@ router.patch('/api/sticker/:id', updateStickerValidation, updateSticker)
 router.get('/api/stickers', getStickers)
 
 router.post('/api/logout', logout)
+
+router.get('/api/tags', getTags)
+router.get('/api/tag/:id', getTag)
 
 export default router

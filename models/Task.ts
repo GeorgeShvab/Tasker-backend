@@ -27,7 +27,7 @@ const taskSchema = new Schema<ITask>(
     tags: {
       ref: 'Tag',
       default: [],
-      type: [],
+      type: [Types.ObjectId],
     },
     creator: {
       ref: 'User',

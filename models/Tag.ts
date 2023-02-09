@@ -24,13 +24,6 @@ const tagSchema = new Schema<ITag>(
   }
 )
 
-tagSchema.virtual('tasks', {
-  localField: '_id',
-  foreignField: 'tags',
-  ref: 'Task',
-  count: true,
-})
-
 tagSchema.static(
   'findOneOrCreate',
   async function (
@@ -46,6 +39,13 @@ tagSchema.static(
     return await this.create(createArgs)
   }
 )
+
+tagSchema.virtual('tasks', {
+  localField: '_id',
+  foreignField: 'tags',
+  ref: 'Task',
+  count: true,
+})
 
 interface TagModel extends Model<ITag> {
   findOneOrCreate(
