@@ -47,6 +47,7 @@ import logout from './controllers/user/logout'
 import getLists from './controllers/list/getLists'
 import getTags from './controllers/tag/getTags'
 import getTag from './controllers/tag/getTag'
+import search from './controllers/search'
 
 const routes = require('./routes.json')
 
@@ -102,5 +103,7 @@ router.post('/api/user/logout', logout)
 
 router.get('/api/tags', getTags)
 router.get('/api/tag/:id', getTag)
+
+router.get('/api/search', search)
 
 export default router

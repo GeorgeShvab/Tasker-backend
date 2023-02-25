@@ -28,6 +28,8 @@ const stickerSchema = new Schema<ISticker>(
   }
 )
 
+stickerSchema.index({ name: 'text', '$**': 'text' })
+
 stickerSchema.set('toObject', { virtuals: true })
 stickerSchema.set('toJSON', { virtuals: true })
 

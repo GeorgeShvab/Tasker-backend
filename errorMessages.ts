@@ -48,4 +48,5 @@ export const SERVER_ERROR = 'Помилка серверу',
     'Назва стікера не може містити більше 50 символів',
   INCORRECT_STICKER_NAME_MIN_LENGTH =
     'Назва стікера повинна містити принанні 1 символ',
-  STICKER_NOT_FOUND = 'Стікер не знайдено'
+  STICKER_NOT_FOUND = 'Стікер не знайдено',
+  SEARCH_NOT_FOUND = 'Немає результатів по запиту'

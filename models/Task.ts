@@ -41,6 +41,8 @@ const taskSchema = new Schema<ITask>(
   }
 )
 
+taskSchema.index({ name: 'text', '$**': 'text' })
+
 taskSchema.set('toObject', { virtuals: true })
 taskSchema.set('toJSON', { virtuals: true })
 
