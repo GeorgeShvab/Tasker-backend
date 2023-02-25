@@ -9,6 +9,8 @@ const getLists = async (req: Request, res: Response) => {
     })
       .sort('-createdAt')
       .populate('tasks')
+      .populate('completedTasks')
+      .populate('uncompletedTasks')
 
     return res.status(200).json(lists)
   } catch (e) {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { SERVER_ERROR } from '../../errorMessages'
 import Sticker from '../../models/Sticker'
+import getRandomColor from '../../utils/getRandomColor'
 
 const createSticker = async (
   req: Request<any, any, { name: string; description?: string }>,
@@ -13,6 +14,7 @@ const createSticker = async (
       name,
       description: description || null,
       creator: req.user,
+      color: getRandomColor(),
     })
 
     return res.status(201).json(sticker)

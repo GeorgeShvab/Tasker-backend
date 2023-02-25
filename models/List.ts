@@ -14,7 +14,7 @@ const listSchema = new Schema<IList>(
       type: Types.ObjectId,
     },
     color: {
-      default: getRandomColor(),
+      required: true,
       type: String,
     },
   },
@@ -29,6 +29,26 @@ listSchema.virtual('tasks', {
   foreignField: 'list',
   ref: 'Task',
   count: true,
+})
+
+listSchema.virtual('completedTasks', {
+  localField: '_id',
+  foreignField: 'list',
+  ref: 'Task',
+  count: true,
+  match: {
+    completed: true,
+  },
+})
+
+listSchema.virtual('uncompletedTasks', {
+  localField: '_id',
+  foreignField: 'list',
+  ref: 'Task',
+  count: true,
+  match: {
+    completed: false,
+  },
 })
 
 listSchema.set('toObject', { virtuals: true })

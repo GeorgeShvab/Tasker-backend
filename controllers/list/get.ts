@@ -13,7 +13,10 @@ const getList = async (req: Request<{ id: string }>, res: Response) => {
 
     const list = await List.findOne({
       _id: id,
-    }).populate('tasks')
+    })
+      .populate('tasks')
+      .populate('completedTasks')
+      .populate('uncompletedTasks')
 
     if (!list) {
       return res.status(404).json({ errors: [{ msg: LIST_NOT_FOUND }] })

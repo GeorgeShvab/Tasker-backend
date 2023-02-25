@@ -18,17 +18,23 @@ const login = async (req: Request<any, any, ReqBody>, res: Response) => {
     })
 
     if (!user) {
-      return res
-        .status(404)
-        .json({ errors: [{ msg: INCORRECT_EMAIL_OR_PASSWORD }] })
+      return res.status(404).json({
+        errors: {
+          email: INCORRECT_EMAIL_OR_PASSWORD,
+          password: INCORRECT_EMAIL_OR_PASSWORD,
+        },
+      })
     }
 
     const comparePasswords = await compare(password, user.password)
 
     if (!comparePasswords) {
-      return res
-        .status(404)
-        .json({ errors: [{ msg: INCORRECT_EMAIL_OR_PASSWORD }] })
+      return res.status(404).json({
+        errors: {
+          email: INCORRECT_EMAIL_OR_PASSWORD,
+          password: INCORRECT_EMAIL_OR_PASSWORD,
+        },
+      })
     }
 
     const accessToken = genAccessJwt(user._id)

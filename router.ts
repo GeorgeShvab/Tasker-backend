@@ -53,14 +53,14 @@ const routes = require('./routes.json')
 const router = Router()
 
 router.use('/static', express.static(path.join(__dirname, 'static')))
-router.use(authorization)
+router.use(routes.authorization, authorization)
 router.use(routes.protected, protection)
 
-router.post('/api/registration', registrationValidation, registration)
+router.post('/api/user/registration', registrationValidation, registration)
 
-router.post('/api/login', loginValidation, login)
+router.post('/api/user/login', loginValidation, login)
 
-router.post('/api/refresh-tokens', refreshTokens)
+router.post('/api/user/refresh-tokens', refreshTokens)
 
 router.post('/api/user/update/avatar', updateAvatar)
 router.patch('/api/user/update/name', updateNameValidation, updateName)
@@ -98,7 +98,7 @@ router.delete('/api/sticker/:id', deleteSticker)
 router.patch('/api/sticker/:id', updateStickerValidation, updateSticker)
 router.get('/api/stickers', getStickers)
 
-router.post('/api/logout', logout)
+router.post('/api/user/logout', logout)
 
 router.get('/api/tags', getTags)
 router.get('/api/tag/:id', getTag)

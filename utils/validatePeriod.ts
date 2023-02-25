@@ -1,6 +1,6 @@
 import { Period } from '../types'
 
-const periods: Period[] = ['today', 'tomorrow', 'week', 'next_week']
+const periods: Period[] = ['today', 'tomorrow', 'week', 'next_week', 'upcoming']
 
 const day = 1000 * 60 * 60 * 24
 const week = day * 7
@@ -25,10 +25,10 @@ const validatePeriod = (value: any): [string, string] | null => {
         return [
           new Date(
             new Date(new Date().setDate(first + 1)).setUTCHours(0, 0, 0, 0)
-          ).toISOString(), // add one because in js first day of the week is a Sunday, but I need it to be Monday
+          ).toISOString(),
           new Date(
             new Date(new Date().setDate(last + 1)).setUTCHours(23, 59, 59, 999)
-          ).toISOString(), // add one because in js first day of the week is a Sunday, but I need it to be Monday
+          ).toISOString(),
         ]
       } else if (value === 'next_week') {
         const first = new Date().getDate() - new Date().getDay()
@@ -42,7 +42,7 @@ const validatePeriod = (value: any): [string, string] | null => {
               0,
               0
             )
-          ).toISOString(), // add one because in js first day of the week is a Sunday, but I need it to be Monday
+          ).toISOString(),
           new Date(
             new Date(new Date().setDate(last + 1) + week).setUTCHours(
               23,
@@ -50,7 +50,22 @@ const validatePeriod = (value: any): [string, string] | null => {
               59,
               999
             )
-          ).toISOString(), // add one because in js first day of the week is a Sunday, but I need it to be Monday
+          ).toISOString(),
+        ]
+      } else if (value === 'upcoming') {
+        const first = new Date().getDate() - new Date().getDay()
+        const last = first + 6
+
+        return [
+          new Date(new Date().setUTCHours(0, 0, 0, 0)).toISOString(),
+          new Date(
+            new Date(new Date().setDate(last + 1) + week).setUTCHours(
+              23,
+              59,
+              59,
+              999
+            )
+          ).toISOString(),
         ]
       }
     }

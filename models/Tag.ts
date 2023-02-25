@@ -14,7 +14,7 @@ const tagSchema = new Schema<ITag>(
       type: Types.ObjectId,
     },
     color: {
-      default: getRandomColor(),
+      required: true,
       type: String,
     },
   },
@@ -45,6 +45,26 @@ tagSchema.virtual('tasks', {
   foreignField: 'tags',
   ref: 'Task',
   count: true,
+})
+
+tagSchema.virtual('completedTasks', {
+  localField: '_id',
+  foreignField: 'tags',
+  ref: 'Task',
+  count: true,
+  match: {
+    completed: true,
+  },
+})
+
+tagSchema.virtual('uncompletedTasks', {
+  localField: '_id',
+  foreignField: 'tags',
+  ref: 'Task',
+  count: true,
+  match: {
+    completed: false,
+  },
 })
 
 interface TagModel extends Model<ITag> {

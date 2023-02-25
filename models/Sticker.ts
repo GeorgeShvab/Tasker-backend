@@ -18,7 +18,7 @@ const stickerSchema = new Schema<ISticker>(
       type: Types.ObjectId,
     },
     color: {
-      default: getRandomColor(),
+      required: true,
       type: String,
     },
   },

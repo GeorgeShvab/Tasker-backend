@@ -20,13 +20,9 @@ const registration = async (req: Request<any, any, ReqBody>, res: Response) => {
 
     if (sameEmailUser) {
       return res.status(400).json({
-        errors: [
-          {
-            param: 'email',
-            msg: 'Користувач з таким емейлом вже зареєстрований',
-            value: email,
-          },
-        ],
+        errors: {
+          email: 'Користувач з таким емейлом вже зареєстрований',
+        },
       })
     }
 

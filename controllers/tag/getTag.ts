@@ -11,7 +11,10 @@ const getTag = async (req: Request<{ id: string }>, res: Response) => {
       return res.status(404).json({ errors: [{ msg: TAG_NOT_FOUND }] })
     }
 
-    const tag = await Tag.findOne({ _id: id }).populate('tasks')
+    const tag = await Tag.findOne({ _id: id })
+      .populate('tasks')
+      .populate('completedTasks')
+      .populate('uncompletedTasks')
 
     if (!tag) {
       return res.status(404).json({ errors: [{ msg: TAG_NOT_FOUND }] })

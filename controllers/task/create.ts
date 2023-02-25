@@ -17,24 +17,12 @@ const createTask = async (req: Request<any, any, ReqBody>, res: Response) => {
   try {
     const { name, description, list, date, tags } = req.body
 
-    const tagsIds: string[] = tags
-      ? await Promise.all(
-          tags.map(async (item: string) => {
-            const tag = await Tag.findOneOrCreate(
-              { name: item, creator: req.user },
-              { name: item, creator: req.user }
-            )
-            return String(tag._id)
-          })
-        )
-      : []
-
     const task = await Task.create({
       name,
       description: description || null,
       list: list || null,
       date: date ? new Date(date) : null,
-      tags: tagsIds,
+      tags: tags,
       creator: req.user,
     })
 

@@ -1,5 +1,5 @@
 export const SERVER_ERROR = 'Помилка серверу',
-  INCORRECT_EMAIL = 'Вкажіть корректний еемйл',
+  INCORRECT_EMAIL = 'Вкажіть коректний емейл',
   INCORRECT_FIRST_NAME_MIN_LENGTH = "Ім'я повинно містити принанні 2 літери",
   INCORRECT_FIRST_NAME_MAX_LENGTH = "Ім'я повинно містити не більше 30 літер",
   INCORRECT_LAST_NAME_MIN_LENGTH = 'Прізвище повинно містити принанні 2 літери',
@@ -35,7 +35,7 @@ export const SERVER_ERROR = 'Помилка серверу',
   INCORRECT_LIST_NAME_MIN_LENGTH =
     'Назва списку повинна містити принанні 1 літеру',
   LIST_NOT_FOUND = 'Список не знайдено',
-  INCORRECT_COLOR = 'Некорректний колір',
+  INCORRECT_COLOR = 'Некоректний колір',
   TAG_ALREADY_EXISTS_ERROR = 'Тег з таким іменем вже існує',
   INCORRECT_TAG_NAME_MAX_LENGTH = 'Назва тегу не може містити більше 30 літер',
   INCORRECT_TAG_NAME_MIN_LENGTH =

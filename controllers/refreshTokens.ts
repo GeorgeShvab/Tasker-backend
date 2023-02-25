@@ -31,14 +31,14 @@ const refreshTokens = async (req: Request, res: Response) => {
       return res.status(400).json({ errors: [{ msg: REFRESH_TOKEN_ERROR }] })
     }
 
-    if (tokenData === 'TOKEN_EXPIRED') {
+    if (tokenData === 'TOKEN_EXPIRED' || typeof tokenData === 'string') {
       return res
         .status(400)
         .json({ errors: [{ msg: REFRESH_TOKEN_EXPIRED_ERROR }] })
     }
 
-    const refreshToken = await genRefreshJwt(req.user)
-    const accessToken = genAccessJwt(req.user)
+    const refreshToken = await genRefreshJwt(tokenData._id)
+    const accessToken = genAccessJwt(tokenData._id)
 
     return res.status(200).json({ accessToken, refreshToken })
   } catch (e) {

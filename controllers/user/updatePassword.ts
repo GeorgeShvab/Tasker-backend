@@ -24,13 +24,17 @@ const updatePassword = async (
     })
 
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: USER_NOT_FOUND }] })
+      return res
+        .status(400)
+        .json({ errors: { oldPassword: 'Невірний старий пароль' } })
     }
 
     const passwordComparison = await compare(oldPassword, user.password)
 
     if (!passwordComparison) {
-      return res.status(400).json({ errors: [{ msg: INCORRECT_OLD_PASSWORD }] })
+      return res
+        .status(400)
+        .json({ errors: { oldPassword: 'Невірний старий пароль' } })
     }
 
     const salt = await genSalt(10)

@@ -10,7 +10,7 @@ const getMe = async (req: Request, res: Response) => {
       return res.status(404).json({ errors: [{ msg: USER_NOT_FOUND }] })
     }
 
-    return res.status(200).json({ user })
+    return res.status(200).json(user)
   } catch (e) {
     console.log(e)
     return res.status(500).json({ errors: [{ msg: SERVER_ERROR }] })

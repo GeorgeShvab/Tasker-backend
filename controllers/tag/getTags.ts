@@ -7,6 +7,8 @@ const getTags = async (req: Request, res: Response) => {
     const tags = await Tag.find({ creator: req.user })
       .sort('-createdAt')
       .populate('tasks')
+      .populate('completedTasks')
+      .populate('uncompletedTasks')
 
     return res.status(200).json(tags)
   } catch (e) {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { SERVER_ERROR, TAG_ALREADY_EXISTS_ERROR } from '../../errorMessages'
 import Tag from '../../models/Tag'
+import getRandomColor from '../../utils/getRandomColor'
 
 const createTag = async (
   req: Request<any, any, { name: string }>,
@@ -22,6 +23,7 @@ const createTag = async (
 
     const tag = await Tag.create({
       name,
+      color: getRandomColor(),
       creator: req.user,
     })
 

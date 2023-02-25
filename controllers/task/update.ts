@@ -37,18 +37,6 @@ const updateTask = async (
       return res.status(403).json({ errors: [{ msg: FORBIDDEN }] })
     }
 
-    const tagsIds: string[] = tags
-      ? await Promise.all(
-          tags.map(async (item: string) => {
-            const tag = await Tag.findOneOrCreate(
-              { name: item, creator: req.user },
-              { name: item, creator: req.user }
-            )
-            return String(tag._id)
-          })
-        )
-      : []
-
     const task = await Task.findOneAndUpdate(
       {
         _id: id,
@@ -59,7 +47,7 @@ const updateTask = async (
         description: description || null,
         list: list || null,
         date: date ? new Date(date) : null,
-        tags: tagsIds,
+        tags,
       }
     )
 

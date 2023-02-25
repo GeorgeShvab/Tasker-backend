@@ -22,7 +22,7 @@ export const genAccessJwt = (id: string | Types.ObjectId): string => {
     },
     accessTokenSecret,
     {
-      expiresIn: '10m',
+      expiresIn: '5m',
     }
   )
   return token

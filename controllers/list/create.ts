@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { SERVER_ERROR } from '../../errorMessages'
 import List from '../../models/List'
+import getRandomColor from '../../utils/getRandomColor'
 
 interface ReqBody {
   name: string
@@ -12,6 +13,7 @@ const createList = async (req: Request<any, any, ReqBody>, res: Response) => {
 
     const list = await List.create({
       name,
+      color: getRandomColor(),
       creator: req.user,
     })
 
