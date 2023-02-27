@@ -186,7 +186,7 @@ export const createTaskValidation = addValidator([
     .custom((value) => typeof value === 'string' || value === null)
     .withMessage(INCORRECT_FIELD_TYPE)
     .bail()
-    .isLength({ max: 2000 })
+    .isLength({ max: 3000 })
     .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
   body('list')
     .optional()
@@ -233,7 +233,7 @@ export const updateTaskValidation = addValidator([
     .custom((value) => typeof value === 'string' || value === null)
     .withMessage(INCORRECT_FIELD_TYPE)
     .bail()
-    .isLength({ max: 2000 })
+    .isLength({ max: 3000 })
     .withMessage(INCORRECT_TASK_NAME_MAX_LENGTH),
   body('list')
     .optional()
