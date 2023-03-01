@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  server:
+    ports:
+      - "8080:8080"
+    image: "tasker/server"
+  client:
+    image: "tasker/client"
+    ports:
+      - "3000:3000"
