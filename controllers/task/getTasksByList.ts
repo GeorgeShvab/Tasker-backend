@@ -3,22 +3,12 @@ import { FORBIDDEN, LIST_NOT_FOUND, SERVER_ERROR } from '../../errorMessages'
 import List from '../../models/List'
 import Task from '../../models/Task'
 import validateDbId from '../../utils/validateDbId'
-import validateNumber from '../../utils/validateNumber'
 import validatePeriod from '../../utils/validatePeriod'
 import validateSort from '../../utils/validateSort'
 
 const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
   try {
     const { id } = req.params
-
-    const status: boolean | null =
-      req.query.status === 'completed'
-        ? true
-        : req.query.status === 'uncompleted'
-        ? false
-        : null
-
-    const page: number = validateNumber(req.query.page) || 0
 
     const period = validatePeriod(req.query.period)
 
@@ -38,10 +28,9 @@ const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
       return res.status(403).json({ errors: [{ msg: FORBIDDEN }] })
     }
 
-    const tasks = await Task.find({
+    const uncompletedTasksPromise = Task.find({
       $and: [
-        { list: id },
-        status === null ? {} : { completed: status },
+        { list: id, completed: false },
         period
           ? {
               date: {
@@ -53,12 +42,32 @@ const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
       ],
     })
       .sort(sort)
-      //.skip(page * 50) I decided do not use pagination
-      //.limit(50)
       .populate('tags')
       .populate('list')
 
-    return res.status(200).json(tasks)
+    const completedTasksPromise = Task.find({
+      $and: [
+        { list: id, completed: true },
+        period
+          ? {
+              date: {
+                $gte: period[0],
+                $lt: period[1],
+              },
+            }
+          : {},
+      ],
+    })
+      .sort(sort)
+      .populate('tags')
+      .populate('list')
+
+    const [completedTasks, uncompletedTasks] = await Promise.all([
+      completedTasksPromise,
+      uncompletedTasksPromise,
+    ])
+
+    return res.status(200).json({ completedTasks, uncompletedTasks })
   } catch (e) {
     console.log(e)
     return res.status(500).json({ errors: [{ msg: SERVER_ERROR }] })
