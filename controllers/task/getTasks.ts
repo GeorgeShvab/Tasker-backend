@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import { SERVER_ERROR } from '../../errorMessages'
 import Task from '../../models/Task'
-import { Period } from '../../types'
 import validateNumber from '../../utils/validateNumber'
 import validatePeriod from '../../utils/validatePeriod'
 import validateSort from '../../utils/validateSort'
@@ -36,8 +35,8 @@ const getTasks = async (req: Request, res: Response) => {
       ],
     })
       .sort(sort)
-      .skip(page * 50)
-      .limit(50)
+      //.skip(page * 50) I decided do not use pagination
+      //.limit(50)
       .populate('tags')
       .populate('list')
 

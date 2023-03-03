@@ -17,17 +17,16 @@ const search = async (req: Request, res: Response) => {
       $text: { $search: query },
     })
       .sort(sort)
-      .skip(page * 50)
-      .limit(50)
+      //.skip(page * 50) I decided do not use pagination
+      //.limit(50)
       .populate('tags')
       .populate('list')
 
     const stickers = await Sticker.find({
       $text: { $search: query },
-    })
-      .sort(sort)
-      .skip(page * 50)
-      .limit(50)
+    }).sort(sort)
+    //.skip(page * 50) I decided do not use pagination
+    //.limit(50)
 
     return res.status(200).json({ stickers, tasks })
   } catch (e) {

@@ -24,7 +24,8 @@
     "/api/stickers",
     "/api/lists",
     "/api/tags",
-    "/api/search"
+    "/api/search",
+    "/api/count"
   ],
   "authorization": [
     "/api/user/registration",
@@ -50,7 +51,8 @@
     "/api/stickers",
     "/api/lists",
     "/api/tags",
-    "/api/search"
+    "/api/search",
+    "/api/count"
   ],
   "protected": [
     "/api/user/update/avatar",
@@ -74,6 +76,7 @@
     "/api/logout",
     "/api/lists",
     "/api/tags",
-    "/api/search"
+    "/api/search",
+    "/api/count"
   ]
 }

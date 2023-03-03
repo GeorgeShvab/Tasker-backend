@@ -48,6 +48,7 @@ import getLists from './controllers/list/getLists'
 import getTags from './controllers/tag/getTags'
 import getTag from './controllers/tag/getTag'
 import search from './controllers/search'
+import getUncompletedTasksCounts from './controllers/task/getUncompletedTasksCounts'
 
 const routes = require('./routes.json')
 
@@ -105,5 +106,7 @@ router.get('/api/tags', getTags)
 router.get('/api/tag/:id', getTag)
 
 router.get('/api/search', search)
+
+router.get('/api/count', getUncompletedTasksCounts)
 
 export default router

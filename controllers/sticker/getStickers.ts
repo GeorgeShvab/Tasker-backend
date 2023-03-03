@@ -12,10 +12,9 @@ const getStickers = async (req: Request, res: Response) => {
 
     const stickers = await Sticker.find({
       creator: req.user,
-    })
-      .sort(sort)
-      .skip(page * 50)
-      .limit(50)
+    }).sort(sort)
+    //.skip(page * 50) I decided do not use pagination
+    //.limit(50)
 
     return res.status(200).json(stickers)
   } catch (e) {

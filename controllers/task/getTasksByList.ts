@@ -53,8 +53,8 @@ const getTasksByList = async (req: Request<{ id: string }>, res: Response) => {
       ],
     })
       .sort(sort)
-      .skip(page * 50)
-      .limit(50)
+      //.skip(page * 50) I decided do not use pagination
+      //.limit(50)
       .populate('tags')
       .populate('list')
 
